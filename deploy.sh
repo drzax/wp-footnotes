@@ -5,7 +5,7 @@
 # main config
 PLUGINSLUG="wp-footnotes"
 CURRENTDIR=`pwd`
-MAINFILE="wp-footnotes.php" # this should be the name of your main php file in the wordpress plugin
+MAINFILE="footnotes.php" # this should be the name of your main php file in the wordpress plugin
 
 # git config
 GITPATH="$CURRENTDIR/" # this file should be in the base of your git repository
