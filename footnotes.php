@@ -85,7 +85,7 @@ class swas_wp_footnotes {
 		} else { 
 			
 			// Set any unset options
-			if ($this->current_options['version'] != WP_FOOTNOTES_VERSION) {
+			if ( !isset( $this->current_options['version'] ) || $this->current_options['version'] != WP_FOOTNOTES_VERSION ) {
 				foreach ($this->default_options as $key => $value) {
 					if (!isset($this->current_options[$key])) {
 						$this->current_options[$key] = $value;
@@ -197,7 +197,7 @@ class swas_wp_footnotes {
 				// Add footnote and record the key
 				$identifiers[$i]['use_footnote'] = count($footnotes);
 				$footnotes[$identifiers[$i]['use_footnote']]['text'] = $identifiers[$i]['text'];
-				$footnotes[$identifiers[$i]['use_footnote']]['symbol'] = $identifiers[$i]['symbol'];
+				$footnotes[$identifiers[$i]['use_footnote']]['symbol'] = isset( $identifiers[$i]['symbol'] ) ? $identifiers[$i]['symbol'] : '';
 				$footnotes[$identifiers[$i]['use_footnote']]['identifiers'][] = $i;
 			}
 		}
