@@ -3,7 +3,7 @@ Contributors: drzax
 Tags: footnotes, post, posts, notes, reference, formatting, referencing, bibliography
 Requires at least: 2.0
 Tested up to: 3.4.2
-Stable tag: 4.2.1
+Stable tag: 4.2.2
 
 Allows post authors to easily add and manage footnotes in posts.
 
