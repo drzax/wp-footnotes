@@ -270,7 +270,7 @@ class swas_wp_footnotes {
 	 */
 	function add_options_page() {
 		// Add a new menu under Options:
-		add_options_page('Footnotes', 'Footnotes', 'manage_options', __FILE__, array($this, 'footnotes_options_page'));
+		add_options_page('WP Footnotes', 'WP Footnotes', 'manage_options', __FILE__, array($this, 'footnotes_options_page'));
 	}
 	
 	
