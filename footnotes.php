@@ -68,7 +68,7 @@ class swas_wp_footnotes {
 									  'post_identifier'=>'',
 									  'pre_footnotes'=>'',
 									  'post_footnotes'=>'',
-									  'style_rules'=>'ol.footnotes{font-size:0.8em; color:#666666;}',
+									  'style_rules'=>"ol.footnotes { color:#666666; }\nol.footnotes li { font-size:80%; }\n",
 									  'no_display_home'=>false,
 									  'no_display_archive'=>false,
 									  'no_display_date'=>false,
