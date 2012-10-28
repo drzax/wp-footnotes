@@ -30,20 +30,21 @@ Author URI: http://www.elvery.net/drzax/
 // Some important constants
 define('WP_FOOTNOTES_OPEN', " ((");  //You can change this if you really have to, but I wouldn't recommend it.
 define('WP_FOOTNOTES_CLOSE', "))");  //Same with this one.
-define('WP_FOOTNOTES_VERSION', '4.2');
 
 // Instantiate the class 
 $swas_wp_footnotes = new swas_wp_footnotes();
 
 // Encapsulate in a class
 class swas_wp_footnotes {
-	var $current_options;
-	var $default_options;
+	private $current_options;
+	private $default_options;
+	
+	const OPTIONS_VERSION = "4.2.4"; // Incremented when the options array changes.
 	
 	/**
 	 * Constructor.
 	 */
-	function swas_wp_footnotes() {		
+	function __construct() {
 	
 		// Define the implemented option styles		
 		$this->styles = array(
@@ -85,13 +86,13 @@ class swas_wp_footnotes {
 		} else { 
 			
 			// Set any unset options
-			if ($this->current_options['version'] != WP_FOOTNOTES_VERSION) {
+			if ($this->current_options['version'] != self::OPTIONS_VERSION) {
 				foreach ($this->default_options as $key => $value) {
 					if (!isset($this->current_options[$key])) {
 						$this->current_options[$key] = $value;
 					}
 				}
-				$this->current_options['version'] = WP_FOOTNOTES_VERSION;
+				$this->current_options['version'] = self::OPTIONS_VERSION;
 				update_option('swas_footnote_options', $this->current_options);
 			}
 		}
