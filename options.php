@@ -111,6 +111,7 @@
 				<td>
 					<ul style="list-style-type:none;">
 						<li><label for="no_display_home"><input type="checkbox" name="no_display_home" id="no_display_home" <?php if($this->current_options['no_display_home'] == true) echo 'checked'; ?> /> the home page</label></li>
+						<li><label for="no_display_preview"><input type="checkbox" name="no_display_preview" id="no_display_preview" <?php if($this->current_options['no_display_preview'] == true) echo 'checked'; ?> /> a preview</label></li>
 						<li><label for="no_display_search"><input type="checkbox" name="no_display_search" id="no_display_search" <?php if($this->current_options['no_display_search'] == true) echo 'checked'; ?> /> search results</label></li>
 						<li><label for="no_display_feed"><input type="checkbox" name="no_display_feed" id="no_display_feed" <?php if($this->current_options['no_display_feed'] == true) echo 'checked'; ?> /> a feed (RSS, Atom, etc)</label></li>
 						<li><label for="no_display_archive"><input type="checkbox" name="no_display_archive" id="no_display_archive" <?php if($this->current_options['no_display_archive'] == true) echo 'checked'; ?> /> an archive page of any kind</label></li>
