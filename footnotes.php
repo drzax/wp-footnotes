@@ -77,7 +77,7 @@ class swas_wp_footnotes {
 									  'no_display_feed'=>false,
 									  'combine_identical_notes'=>false,
 									  'priority'=>11,
-									  'version'=>WP_FOOTNOTES_VERSION);
+									  'version'=>self::OPTIONS_VERSION);
 		
 		// Get the current settings or setup some defaults if needed
 		if (!$this->current_options = get_option('swas_footnote_options')){
