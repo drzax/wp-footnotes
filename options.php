@@ -136,7 +136,7 @@
 				</td>
 			</tr>
 		</table>
-		<p class="submit"><input type="submit" name="reset_options" value="Reset Options to Defaults" /> <input type="submit" name="save_options" value="Save Changes" class="button-primary" /></p>
+		<p class="submit"><input type="submit" name="save_options" value="Save Changes" class="button-primary" /> <input type="submit" name="reset_options" value="Reset Options to Defaults" /></p>
 	</form>
 	
 	<hr/>
