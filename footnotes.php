@@ -30,6 +30,7 @@ Author URI: http://www.elvery.net/drzax/
 // Some important constants
 define('WP_FOOTNOTES_OPEN', " ((");  //You can change this if you really have to, but I wouldn't recommend it.
 define('WP_FOOTNOTES_CLOSE', "))");  //Same with this one.
+define('WP_FOOTNOTES_SHORTCODE', 'footnotes');
 
 // Instantiate the class 
 $swas_wp_footnotes = new swas_wp_footnotes();
@@ -227,31 +228,36 @@ class swas_wp_footnotes {
 		
 		// Display footnotes
 		if ($display) {
+			$footnotes_markup = '';
 			$start = ($start_number != 1) ? 'start="'.$start_number.'" ' : '';
-			$data = $data.$this->current_options['pre_footnotes'];
+			$footnotes_markup = $footnotes_markup.$this->current_options['pre_footnotes'];
 			
-			$data = $data . '<ol '.$start.'class="footnotes">';	
+			$footnotes_markup = $footnotes_markup . '<ol '.$start.'class="footnotes">';	
 			foreach ($footnotes as $key => $value) {
-				$data = $data.'<li id="footnote_'.$key.'_'.$post->ID.'" class="footnote"';
+				$footnotes_markup = $footnotes_markup.'<li id="footnote_'.$key.'_'.$post->ID.'" class="footnote"';
 				if ($style == 'symbol') {
-					$data = $data . ' style="list-style-type:none;"';
+					$footnotes_markup = $footnotes_markup . ' style="list-style-type:none;"';
 				} elseif($style != $this->current_options['list_style_type']) {
-					$data = $data . ' style="list-style-type:' . $style . ';"';
+					$footnotes_markup = $footnotes_markup . ' style="list-style-type:' . $style . ';"';
 				}
-				$data = $data . '>';
+				$footnotes_markup = $footnotes_markup . '>';
 				if ($style == 'symbol') {
-					$data = $data . '<span class="symbol">' . $this->convert_num($key+$start_number, $style, count($footnotes)) . '</span> ';
+					$footnotes_markup = $footnotes_markup . '<span class="symbol">' . $this->convert_num($key+$start_number, $style, count($footnotes)) . '</span> ';
 				}
-				$data = $data.$value['text'];
+				$footnotes_markup = $footnotes_markup.$value['text'];
 				if (!is_feed()){
 					foreach($value['identifiers'] as $identifier){
-						$data = $data.$this->current_options['pre_backlink'].'<a href="'.( ($use_full_link) ? get_permalink($post->ID) : '' ).'#identifier_'.$identifier.'_'.$post->ID.'" class="footnote-link footnote-back-link">'.$this->current_options['backlink'].'</a>'.$this->current_options['post_backlink'];
+						$footnotes_markup = $footnotes_markup.$this->current_options['pre_backlink'].'<a href="'.( ($use_full_link) ? get_permalink($post->ID) : '' ).'#identifier_'.$identifier.'_'.$post->ID.'" class="footnote-link footnote-back-link">'.$this->current_options['backlink'].'</a>'.$this->current_options['post_backlink'];
 					}
 				}
-				$data = $data . '</li>';
+				$footnotes_markup = $footnotes_markup . '</li>';
 			}
-			$data = $data . '</ol>' . $this->current_options['post_footnotes'];
+			$footnotes_markup = $footnotes_markup . '</ol>' . $this->current_options['post_footnotes'];
 		}
+		
+		$replace_count = 0;
+		$data = str_replace('['.WP_FOOTNOTES_SHORTCODE.']', $footnotes_markup, $data, $replace_count);
+		if (!$replace_count) $data = $data.$footnotes_markup;
 		
 		return $data;
 	}
