@@ -301,7 +301,7 @@ class swas_wp_footnotes {
 		?>
 		<style type="text/css">
 			<?php if ($this->current_options['list_style_type'] != 'symbol'): ?>
-			ol.footnotes li {list-style-type:<?php echo $this->current_options['list_style_type']; ?>;}
+			ol.footnotes>li {list-style-type:<?php echo $this->current_options['list_style_type']; ?>;}
 			<?php endif; ?>
 			<?php echo $this->current_options['style_rules'];?>
 		</style>
