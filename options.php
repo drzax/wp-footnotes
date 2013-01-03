@@ -18,7 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 ?>
-<?php wp_enqueue_script('wp-admin'); ?>
+<?php wp_enqueue_script('wp-footnotes-admin'); ?>
 <?php if (!empty($_POST['save_options'])): ?>
 <div class="updated"><p><strong>Options saved.</strong></p></div>
 <?php elseif (!empty($_POST['reset_options'])): ?>
