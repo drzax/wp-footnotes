@@ -1,7 +1,7 @@
 <?php
 /*
  * This file is part of WP-Footnotes a plugin for WordPress
- * Copyright (C) 2007-2012 Simon Elvery
+ * Copyright (C) 2007-2013 Simon Elvery
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
