@@ -18,22 +18,7 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 ?>
-<script type="text/javascript" language="javascript">
-	/* <![CDATA[ */
-
-	jQuery(document).ready(function() {
-		jQuery('#list_style_type').change(function() {
-			if (jQuery(this).val() == 'symbol') {
-				jQuery('#list_style_symbol_container').slideDown();
-			} else {
-				jQuery('#list_style_symbol_container').slideUp();
-			}
-		});
-	});
-
-	/* ]]> */
-</script>
-
+<?php wp_enqueue_script('wp-admin'); ?>
 <?php if (!empty($_POST['save_options'])): ?>
 <div class="updated"><p><strong>Options saved.</strong></p></div>
 <?php elseif (!empty($_POST['reset_options'])): ?>

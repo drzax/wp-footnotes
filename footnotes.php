@@ -135,9 +135,9 @@ class swas_wp_footnotes {
 		// Hook me up
 		add_action('the_content', array($this, 'process'), $this->current_options['priority']);
 		add_action('admin_menu', array($this, 'add_options_page')); 		// Insert the Admin panel.
+		add_action('admin_enqueue_scripts', array($this, 'register_js'));
 		add_action('wp_head', array($this, 'insert_styles'));
 	}
-	
 	
 	/**
 	 * Searches the text and extracts footnotes. 
@@ -283,6 +283,12 @@ class swas_wp_footnotes {
 		add_options_page('WP Footnotes', 'WP Footnotes', 'manage_options', __FILE__, array($this, 'footnotes_options_page'));
 	}
 	
+	/**
+	 * Register javascript.
+	 */
+	function register_js() {
+		wp_register_script( 'wp-admin', plugins_url( 'admin.js', __FILE__ ), array('jquery'));
+	}
 	
 	function upgrade_post($data){
 		$data = str_replace('<footnote>',WP_FOOTNOTES_OPEN,$data);
