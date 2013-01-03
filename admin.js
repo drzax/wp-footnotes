@@ -24,4 +24,11 @@ jQuery(document).ready(function() {
 			jQuery('#list_style_symbol_container').slideUp();
 		}
 	}).change();
+	
+	jQuery('.toggle-section').click(function(){
+		var $this = jQuery(this);
+		jQuery($this.attr('href')).slideToggle();
+		$this.text(($this.text()==='show')?'hide':'show');
+		return false;
+	});
 });

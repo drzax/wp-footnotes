@@ -121,7 +121,25 @@
 				</td>
 			</tr>
 		</table>
-		<p class="submit"><input type="submit" name="save_options" value="Save Changes" class="button-primary" /> <input type="submit" name="reset_options" value="Reset Options to Defaults" /></p>
+		<h3 class="title">Advanced <a class="toggle-section" href="#wp-footnotes-advanced-options"><small>show</small></a></h3>
+		<table id="wp-footnotes-advanced-options" style="display: none;" class="form-table">
+			<tr>
+				<td colspan="2">Changing these settings will change functionality it a way which may stop footnotes from displaying correctly. For footnotes to work as expected after updating these settings, you will need to <strong>manually update all existing posts with footnotes</strong>. <strong>Please don't change these settings unless you're sure you know what you're doing.</strong></td>
+			</tr>
+			<tr>
+				<th><label for="footnotes_open">Begin a footnote</label></th>
+				<td><input size="3" type="text" name="footnotes_open" id="footnotes_open" value="<?php echo $this->current_options['footnotes_open']; ?>" /></td>
+			</tr>
+			<tr>
+				<th><label for="footnotes_close">End a footnote</label></th>
+				<td><input size="3" type="text" name="footnotes_close" id="footnotes_close" value="<?php echo $this->current_options['footnotes_close']; ?>" /></td>
+			</tr>
+			<tr>
+				<th><label for="footnotes_shortcode">Footnote shortcode</label></th>
+				<td>[ <input size="8" type="text" name="footnotes_shortcode" id="footnotes_shortcode" value="<?php echo $this->current_options['footnotes_shortcode']; ?>" /> ]</td>
+			</tr>
+		</table>
+		<p class="submit"><input type="submit" name="save_options" value="Save Changes" class="button-primary" /> <input type="submit" name="reset_options" class="button-secondary" value="Reset Options to Defaults" /></p>
 	</form>
 	
 	<hr/>

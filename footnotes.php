@@ -27,11 +27,6 @@ Author URI: http://www.elvery.net/drzax/
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  */
 
-// Some important constants
-define('WP_FOOTNOTES_OPEN', " ((");  //You can change this if you really have to, but I wouldn't recommend it.
-define('WP_FOOTNOTES_CLOSE', "))");  //Same with this one.
-define('WP_FOOTNOTES_SHORTCODE', 'footnotes');
-
 // Instantiate the class 
 $swas_wp_footnotes = new swas_wp_footnotes();
 
@@ -40,7 +35,7 @@ class swas_wp_footnotes {
 	private $current_options;
 	private $default_options;
 	
-	const OPTIONS_VERSION = "4.2.4"; // Incremented when the options array changes.
+	const OPTIONS_VERSION = "4.2.6"; // Incremented when the options array changes.
 	
 	/**
 	 * Constructor.
@@ -79,6 +74,9 @@ class swas_wp_footnotes {
 									  'no_display_feed'=>false,
 									  'combine_identical_notes'=>false,
 									  'priority'=>11,
+									  'footnotes_open'=>' ((',
+									  'footnotes_close'=>'))',
+									  'footnotes_shortcode'=>'footnotes',
 									  'version'=>self::OPTIONS_VERSION);
 		
 		// Get the current settings or setup some defaults if needed
@@ -126,6 +124,9 @@ class swas_wp_footnotes {
 			$footnotes_options['combine_identical_notes'] = (array_key_exists('combine_identical_notes', $_POST)) ? true : false;
 			$footnotes_options['priority'] = $_POST['priority'];
 			
+			$footnotes_options['footnotes_open'] = $_POST['footnotes_open'];
+			$footnotes_options['footnotes_close'] = $_POST['footnotes_close'];
+			
 			update_option('swas_footnote_options', $footnotes_options);
 		} elseif( !empty($_POST['reset_options']) ) {
 			update_option('swas_footnote_options', '');
@@ -152,7 +153,7 @@ class swas_wp_footnotes {
 		$start_number = (preg_match("|<!\-\-startnum=(\d+)\-\->|",$data,$start_number_array)==1) ? $start_number_array[1] : 1;
 	
 		// Regex extraction of all footnotes (or return if there are none)
-		if ( ! preg_match_all("/(".preg_quote(WP_FOOTNOTES_OPEN)."|<footnote>)(.*)(".preg_quote(WP_FOOTNOTES_CLOSE)."|<\/footnote>)/Us", $data, $identifiers, PREG_SET_ORDER)) {
+		if ( ! preg_match_all("/(".preg_quote($this->current_options['footnotes_open'])."|<footnote>)(.*)(".preg_quote($this->current_options['footnotes_close'])."|<\/footnote>)/Us", $data, $identifiers, PREG_SET_ORDER)) {
 			return $data;
 		}
 
@@ -256,7 +257,7 @@ class swas_wp_footnotes {
 		}
 		
 		$replace_count = 0;
-		$data = str_replace('['.WP_FOOTNOTES_SHORTCODE.']', $footnotes_markup, $data, $replace_count);
+		$data = str_replace('['.$this->current_options['footnotes_shortcode'].']', $footnotes_markup, $data, $replace_count);
 		if (!$replace_count) $data = $data.$footnotes_markup;
 		
 		return $data;
@@ -291,8 +292,8 @@ class swas_wp_footnotes {
 	}
 	
 	function upgrade_post($data){
-		$data = str_replace('<footnote>',WP_FOOTNOTES_OPEN,$data);
-		$data = str_replace('</footnote>',WP_FOOTNOTES_CLOSE,$data);
+		$data = str_replace('<footnote>',$this->current_options['footnotes_open'],$data);
+		$data = str_replace('</footnote>',$this->current_options['footnotes_close'],$data);
 		return $data;
 	}
 	
