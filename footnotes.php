@@ -153,7 +153,7 @@ class swas_wp_footnotes {
 		$start_number = (preg_match("|<!\-\-startnum=(\d+)\-\->|",$data,$start_number_array)==1) ? $start_number_array[1] : 1;
 	
 		// Regex extraction of all footnotes (or return if there are none)
-		if ( ! preg_match_all("/(".preg_quote($this->current_options['footnotes_open'])."|<footnote>)(.*)(".preg_quote($this->current_options['footnotes_close'])."|<\/footnote>)/Us", $data, $identifiers, PREG_SET_ORDER)) {
+		if ( ! preg_match_all("/(".preg_quote($this->current_options['footnotes_open'], "/")."|<footnote>)(.*)(".preg_quote($this->current_options['footnotes_close'], "/")."|<\/footnote>)/Us", $data, $identifiers, PREG_SET_ORDER)) {
 			return $data;
 		}
 
