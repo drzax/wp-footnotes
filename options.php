@@ -33,13 +33,16 @@
 		<fieldset style="border:none; line-height:20px; margin-bottom:9px; padding:10px; background:#EAF3FA; -moz-border-radius:5px; -webkit-border-radius: 5px; border-radius: 5px;">
 			<table>
 				<tr>
-					<th><label for="pre_identifier">Before</label></th>
+					<th><label for="pre_identifier">Before link</label></th>
+					<th><label for="inner_pre_identifier">Before</label></th>
 					<th><label for="list_style_type">Style</label></th>
-					<th><label for="post_identifier">After</label></th>
+					<th><label for="inner_post_identifier">After</label></th>
+					<th><label for="post_identifier">After link</label></th>
 					<th>&nbsp;</th>
 				</tr>
 				<tr>
 					<td><input type="text" id="pre_identifier" name="pre_identifier" size="3" value="<?php echo $this->current_options['pre_identifier']; ?>" /></td>
+					<td><input type="text" id="inner_pre_identifier" name="inner_pre_identifier" size="3" value="<?php echo $this->current_options['inner_pre_identifier']; ?>" /></td>
 					<td>
 						<select name="list_style_type" id="list_style_type">
 							<?php foreach ($this->styles as $key => $val): ?>
@@ -47,6 +50,7 @@
 							<?php endforeach; ?>
 						</select>
 					</td>
+					<td><input type="text" name="inner_post_identifier" id="inner_post_identifier" size="3" value="<?php echo $this->current_options['inner_post_identifier']; ?>"  /></td>
 					<td><input type="text" name="post_identifier" id="post_identifier" size="3" value="<?php echo $this->current_options['post_identifier']; ?>"  /></td>
 					<td><input type="checkbox" name="superscript" id="superscript" <?php if($this->current_options['superscript'] == true) echo 'checked'; ?> /> <label for="superscript">Make note identifier superscript? </label></td>
 				</tr>
