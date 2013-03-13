@@ -138,6 +138,7 @@ class swas_wp_footnotes {
 		add_action('admin_menu', array($this, 'add_options_page')); 		// Insert the Admin panel.
 		add_action('admin_enqueue_scripts', array($this, 'register_js'));
 		add_action('wp_head', array($this, 'insert_styles'));
+		add_action('wp_enqueue_scripts', array($this, 'tooltip_scripts'));
 	}
 	
 	/**
@@ -247,9 +248,11 @@ class swas_wp_footnotes {
 				}
 				$footnotes_markup = $footnotes_markup.$value['text'];
 				if (!is_feed()){
+					$footnotes_markup .= '<span class="footnote-back-link-wrapper">';
 					foreach($value['identifiers'] as $identifier){
 						$footnotes_markup = $footnotes_markup.$this->current_options['pre_backlink'].'<a href="'.( ($use_full_link) ? get_permalink($post->ID) : '' ).'#identifier_'.$identifier.'_'.$post->ID.'" class="footnote-link footnote-back-link">'.$this->current_options['backlink'].'</a>'.$this->current_options['post_backlink'];
 					}
+					$footnotes_markup .= '</span>';
 				}
 				$footnotes_markup = $footnotes_markup . '</li>';
 			}
@@ -366,4 +369,17 @@ class swas_wp_footnotes {
 		}
 		
 	}
+
+	/**
+	 * Add scripts and CSS for pretty tooltips.
+	 */
+	function tooltip_scripts() {
+		wp_enqueue_script(
+			'wp-footnotes-tooltips',
+			plugins_url( 'js/tooltips.js' , __FILE__ ),
+			array('jquery', 'jquery-ui-widget', 'jquery-ui-tooltip', 'jquery-ui-core', 'jquery-ui-position')
+		);
+
+		wp_enqueue_style( 'wp-footnotes-tt-style', plugins_url( 'css/tooltips.css' , __FILE__ ), array(), null );
+        }
 }
