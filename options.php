@@ -110,6 +110,10 @@
 				</td>
 			</tr>
 			<tr>
+				<th><label for="pretty_tooltips">Use pretty tooltips (uses jQuery UI):</label></th>
+				<td><input type="checkbox" name="pretty_tooltips" id="pretty_tooltips" <?php if ($this->current_options['pretty_tooltips'] == true): ?> checked="checked"<?php endif; ?> /></td>
+			</tr>
+			<tr>
 				<th><label for="combine_identical_notes">Combine identical notes? </label></th>
 				<td><input type="checkbox" name="combine_identical_notes" id="combine_identical_notes" <?php if ($this->current_options['combine_identical_notes'] == true): ?> checked="checked"<?php endif; ?> /></td>
 			</tr>
