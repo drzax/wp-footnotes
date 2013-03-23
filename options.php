@@ -30,14 +30,12 @@
 	<h2>WP-Footnotes Options</h2>
 	<form method="post">
 		<h3 class="title">Identifier</h3>
-		<fieldset style="border:none; line-height:20px; margin-bottom:9px; padding:10px; background:#EAF3FA; -moz-border-radius:5px; -webkit-border-radius: 5px; border-radius: 5px;">
+		<fieldset id="wp-footnotes-identifier-options">
 			<table>
 				<tr>
-					<th><label for="pre_identifier">Before link</label></th>
-					<th><label for="inner_pre_identifier">Before</label></th>
-					<th><label for="list_style_type">Style</label></th>
-					<th><label for="inner_post_identifier">After</label></th>
-					<th><label for="post_identifier">After link</label></th>
+					<th class="identifier-link"><label for="pre_identifier">Before</label></th>
+					<th colspan="3" class="identifier-link"><label for="inner_pre_identifier">Link</label></th>
+					<th class="identifier-link"><label for="post_identifier">After</label></th>
 					<th>&nbsp;</th>
 				</tr>
 				<tr>
@@ -66,7 +64,7 @@
 			</div>
 		</fieldset>
 		<h3 class="title">Back-link </h3>
-		<fieldset style="border:none; line-height:20px; margin-bottom:9px; padding:10px; background:#EAF3FA; -moz-border-radius:5px; -webkit-border-radius: 5px; border-radius: 5px;">
+		<fieldset  id="wp-footnotes-backlink-options">
 			<p>These options affect how the back-links after each footnote look. A good back-link character is &amp;#8617; (&#8617). If you want to remove the back-links all together, you can effectively do so by making all these settings blank.</p>
 			<table>
 				<tr>
@@ -81,7 +79,6 @@
 				</tr>
 			</table>
 		</fieldset>
-		<h3 class="title">More</h3>
 		<table class="form-table">
 			<tr>
 				<th><label for="pre_footnotes">Anything to be displayed <strong>before</strong> the footnotes at the bottom of the post can go here:</label></th>
@@ -98,7 +95,7 @@
 			<tr>
 				<th>Do not display footnotes at all when the page being shown is:</th>
 				<td>
-					<ul style="list-style-type:none;">
+					<ul class="checkboxes">
 						<li><label for="no_display_home"><input type="checkbox" name="no_display_home" id="no_display_home" <?php if($this->current_options['no_display_home'] == true) echo 'checked'; ?> /> the home page</label></li>
 						<li><label for="no_display_preview"><input type="checkbox" name="no_display_preview" id="no_display_preview" <?php if($this->current_options['no_display_preview'] == true) echo 'checked'; ?> /> a preview</label></li>
 						<li><label for="no_display_search"><input type="checkbox" name="no_display_search" id="no_display_search" <?php if($this->current_options['no_display_search'] == true) echo 'checked'; ?> /> search results</label></li>
@@ -121,18 +118,18 @@
 				<th><label for="combine_identical_notes">Combine identical notes? </label></th>
 				<td><input type="checkbox" name="combine_identical_notes" id="combine_identical_notes" <?php if ($this->current_options['combine_identical_notes'] == true): ?> checked="checked"<?php endif; ?> /></td>
 			</tr>
+		</table>
+		<h3 class="title">Advanced <a class="toggle-section" href="#wp-footnotes-advanced-options"><small>show</small></a></h3>
+		<table id="wp-footnotes-advanced-options" style="display: none;" class="form-table">
+			<tr>
+				<td colspan="2">Changing these settings will change functionality it a way which may stop footnotes from displaying correctly. For footnotes to work as expected after updating these settings, you will need to <strong>manually update all existing posts with footnotes</strong>. <strong>Please don't change these settings unless you're sure you know what you're doing.</strong></td>
+			</tr>
 			<tr>
 				<th><label for="priority">Priority: </label></th>
 				<td>
 					<input size="3" type="text" name="priority" id="priority" value="<?php echo $this->current_options['priority']; ?>" /> (Default: 11)
 					<p><small>(This setting controls the order in which the WP-Footnotes plugin executes in relation to other plugins. Modifying this setting may affect the behaviour of other plugins.)</small></p>
 				</td>
-			</tr>
-		</table>
-		<h3 class="title">Advanced <a class="toggle-section" href="#wp-footnotes-advanced-options"><small>show</small></a></h3>
-		<table id="wp-footnotes-advanced-options" style="display: none;" class="form-table">
-			<tr>
-				<td colspan="2">Changing these settings will change functionality it a way which may stop footnotes from displaying correctly. For footnotes to work as expected after updating these settings, you will need to <strong>manually update all existing posts with footnotes</strong>. <strong>Please don't change these settings unless you're sure you know what you're doing.</strong></td>
 			</tr>
 			<tr>
 				<th><label for="footnotes_open">Begin a footnote</label></th>
@@ -147,7 +144,7 @@
 				<td>[ <input size="8" type="text" name="footnotes_shortcode" id="footnotes_shortcode" value="<?php echo $this->current_options['footnotes_shortcode']; ?>" /> ]</td>
 			</tr>
 		</table>
-		<p class="submit"><input type="submit" name="save_options" value="Save Changes" class="button-primary" /> <input type="submit" name="reset_options" class="button-secondary" value="Reset Options to Defaults" /></p>
+		<p class="submit"><input type="submit" name="save_options" value="Save Changes" class="button-primary" /></p>
 	</form>
 	
 	<hr/>
@@ -163,12 +160,12 @@
 	<p>If you have a general enquiry that isn't a bug or feature request, the best place is the <a href="http://wordpress.org/tags/wp-footnotes?forum_id=10" title="General Support">WordPress.org support forums for WP-Footnotes</a>.
 
 	<h3 class="title">Contributing</h3>
-	<p>The plugin is primarily maintained on <a href="https://github.com/drzax/WP-Footnotes">GitHub</a> with each new release synced to the WordPress Plugins repository. If you've got the <a href="http://www.youtube.com/watch?feature=player_detailpage&v=ZHDi_AnqwN4#t=3s">skillz</a> please contribute, it's as simple as making a <a href="https://help.github.com/articles/using-pull-requests">pull request</a>.</p>
+	<p>The plugin is primarily maintained on <a href="https://github.com/drzax/WP-Footnotes">GitHub</a> with each new release synced to the WordPress Plugins repository. If you've got the <a href="http://www.youtube.com/watch?feature=player_detailpage&v=ZHDi_AnqwN4#t=3s">skills</a> please contribute, it's as simple as making a <a href="https://help.github.com/articles/using-pull-requests">pull request</a>.</p>
 	
 	<h3 class="title">Documentation &amp; Support</h3>
-	<p>You can view <a href="http://elvery.net/drzax/more-things/wordpress-footnotes-plugin/" title="WP-Footnotes documentation">the documentation</a> at <a href="http://elvery.net/drzax" title="sw'as">sw'as</a>, the author's website. Support is available via the community <a href="http://wordpress.org/tags/wp-footnotes?forum_id=10" title="General Support">WordPress.org support forums for WP-Footnotes</a>. I do monitor posts there and respond when I can.</p>
+	<p>You can view <a href="http://elvery.net/drzax/more-things/wordpress-footnotes-plugin/" title="WP-Footnotes documentation">the documentation</a> at <a href="http://elvery.net/drzax" title="sw'as">the author's website</a>. Support is available via the community <a href="http://wordpress.org/tags/wp-footnotes?forum_id=10" title="General Support">WordPress.org support forums for WP-Footnotes</a>. I do monitor posts there and respond when I can.</p>
 	
-	<h3 class="title">Licensing &amp Copyright</h3>
+	<h3 class="title">Licensing &amp; Copyright</h3>
 	<p>Copyright &copy; 2007-<?php echo date_format(new DateTime(), 'Y'); ?> <a href="http://elvery.net">Simon Elvery</a></p>
 	<p>WP-Footnotes is licensed under the <a href="http://www.gnu.org/licenses/gpl.html">GNU GPL</a>. WP-Footnotes comes with ABSOLUTELY NO WARRANTY. This is free software, and you are welcome to redistribute it under certain conditions. See the <a href="http://www.gnu.org/licenses/gpl.html">license</a> for details.</p>
 	
