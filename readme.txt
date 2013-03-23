@@ -1,9 +1,9 @@
 === WP-Footnotes ===
 Contributors: drzax
 Tags: footnotes, post, posts, notes, reference, formatting, referencing, bibliography
-Requires at least: 2.0
-Tested up to: 3.4.2
-Stable tag: 4.2.2
+Requires at least: 2.6
+Tested up to: 3.5.1
+Stable tag: 4.3
 
 Allows post authors to easily add and manage footnotes in posts.
 
@@ -36,11 +36,19 @@ If you fancy being even more helpful, you can write some code and submit a pull 
 
 Because answers to pretty much all the questions that get asked frequently are in [the manual](http://elvery.net/drzax/wordpress-footnotes-plugin).
 
-= Licence? =
+= Licence =
 
 This plugin is licensed under [the same license as WordPress](http://wordpress.org/about/license/) itself, the GPLv2 (or later).
 
 == Change Log ==
+
+= 4.3 =
+
+- Add a shortcode [footnotes] so footnote list can be placed anywhere in the post content.
+- Add ability to customise the opening and closing delimiters used to markup footnotes.
+- Add a jQueryUI pretty tooltips option.
+- Add additional options for how the identifier link is displayed (and a live preview in the options screen).
+- Various bug fixes and minor improvements. 
 
 = 4.2.1 =
 
