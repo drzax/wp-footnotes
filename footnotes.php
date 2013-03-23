@@ -68,7 +68,6 @@ class swas_wp_footnotes {
 									  'post_footnotes'=>'',
 									  'style_rules'=>"ol.footnotes { color:#666666; }\nol.footnotes li { font-size:80%; }\n",
 									  'no_display_home'=>false,
-									  'no_display_preview'=>false,
 									  'no_display_archive'=>false,
 									  'no_display_date'=>false,
 									  'no_display_category'=>false,
@@ -119,7 +118,6 @@ class swas_wp_footnotes {
 			$footnotes_options['style_rules'] = stripslashes($_POST['style_rules']);
 			
 			$footnotes_options['no_display_home'] = (array_key_exists('no_display_home', $_POST)) ? true : false;
-			$footnotes_options['no_display_preview'] = (array_key_exists('no_display_preview', $_POST)) ? true : false;
 			$footnotes_options['no_display_archive'] = (array_key_exists('no_display_archive', $_POST)) ? true : false;
 			$footnotes_options['no_display_date'] = (array_key_exists('no_display_date', $_POST)) ? true : false;
 			$footnotes_options['no_display_category'] = (array_key_exists('no_display_category', $_POST)) ? true : false;
@@ -168,7 +166,6 @@ class swas_wp_footnotes {
 		// Check whether we are displaying them or not
 		$display = true;
 		if ($this->current_options['no_display_home'] && is_home()) $display = false;
-		if ($this->current_options['no_display_preview'] && is_home()) $display = false;
 		if ($this->current_options['no_display_archive'] && is_archive()) $display = false;
 		if ($this->current_options['no_display_date'] && is_date()) $display = false;
 		if ($this->current_options['no_display_category'] && is_category()) $display = false;
