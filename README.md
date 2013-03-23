@@ -12,7 +12,7 @@ Installation is best handled from within the WordPress admin area, but you can [
 WordPress Plugin Directory](http://wordpress.org/extend/plugins/wp-footnotes/).
 
 [Documentation on using WP-Footnotes](http://elvery.net/drzax/wordpress-footnotes-plugin) is at 
-[sw'as](http://elvery.net/drzax) (the author's website). Further support is crowd sourced via the 
+[the author's website](http://elvery.net/drzax). Further support is crowd sourced via the 
 [WordPress support forums](http://wordpress.org/support/plugin/wp-footnotes).
 
 Bug Reports
@@ -21,13 +21,16 @@ Bug Reports
 Bug reports are best made via the 
 [WordPress Plugins Trac](http://plugins.trac.wordpress.org/newticket?component=wp-footnotes&owner=drzax).
 
+Maintainers
+-----------
+* [Simon Elvery](http://www.elvery.net)
+
 Contributors
 ------------
-
-* [Simon Elvery](http://www.elvery.net)
 * [Christian Wach](https://github.com/christianwach)
+* [Akinori MUSHA](https://github.com/knu)
 * [Chris Hastie](http://www.oak-wood.co.uk)
 
 Contributions are welcomed. Please review the 
 [guidelines for contributing to WP Footnotes](https://github.com/drzax/wp-footnotes/blob/master/CONTRIBUTING.md) before 
-submittinga pull request [on GitHub](https://github.com/drzax/wp-footnotes).
+submitting a pull request [on GitHub](https://github.com/drzax/wp-footnotes).
