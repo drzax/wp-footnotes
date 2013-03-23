@@ -59,8 +59,10 @@ class swas_wp_footnotes {
 									  'backlink'=>'&#8617;',
 									  'post_backlink'=>']',
 									  'pre_identifier'=>'',
+									  'inner_pre_identifier'=>'',
 									  'list_style_type'=>'decimal',
 									  'list_style_symbol'=>'&dagger;',
+									  'inner_post_identifier'=>'',
 									  'post_identifier'=>'',
 									  'pre_footnotes'=>'',
 									  'post_footnotes'=>'',
@@ -106,7 +108,9 @@ class swas_wp_footnotes {
 			$footnotes_options['post_backlink'] = $_POST['post_backlink'];
 			
 			$footnotes_options['pre_identifier'] = $_POST['pre_identifier'];
+			$footnotes_options['inner_pre_identifier'] = $_POST['inner_pre_identifier'];
 			$footnotes_options['list_style_type'] = $_POST['list_style_type'];
+			$footnotes_options['inner_post_identifier'] = $_POST['inner_post_identifier'];
 			$footnotes_options['post_identifier'] = $_POST['post_identifier'];
 			$footnotes_options['list_style_symbol'] = $_POST['list_style_symbol'];
 		
@@ -225,7 +229,7 @@ class swas_wp_footnotes {
 			$id_num = ($style == 'decimal') ? $value['use_footnote']+$start_number : $this->convert_num($value['use_footnote']+$start_number, $style, count($footnotes));
 			$id_href = ( ($use_full_link) ? get_permalink($post->ID) : '' ) . "#footnote_".$value['use_footnote']."_".$post->ID;
 			$id_title = str_replace('"', "&quot;", htmlentities(html_entity_decode(strip_tags($value['text']), ENT_QUOTES, 'UTF-8'), ENT_QUOTES, 'UTF-8'));
-			$id_replace = $this->current_options['pre_identifier'].'<a href="'.$id_href.'" id="'.$id_id.'" class="footnote-link footnote-identifier-link" title="'.$id_title.'">'.$id_num.'</a>'.$this->current_options['post_identifier'];
+			$id_replace = $this->current_options['pre_identifier'].'<a href="'.$id_href.'" id="'.$id_id.'" class="footnote-link footnote-identifier-link" title="'.$id_title.'">'.$this->current_options['inner_pre_identifier'].$id_num.$this->current_options['inner_post_identifier'].'</a>'.$this->current_options['post_identifier'];
 			if ($this->current_options['superscript']) $id_replace = '<sup>'.$id_replace.'</sup>';
 			if ($display) $data = substr_replace($data, $id_replace, strpos($data,$value[0]),strlen($value[0]));
 			else $data = substr_replace($data, '', strpos($data,$value[0]),strlen($value[0]));

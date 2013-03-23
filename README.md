@@ -26,6 +26,7 @@ Contributors
 
 * [Simon Elvery](http://www.elvery.net)
 * [Christian Wach](https://github.com/christianwach)
+* [Chris Hastie](http://www.oak-wood.co.uk)
 
 Contributions are welcomed. Please review the 
 [guidelines for contributing to WP Footnotes](https://github.com/drzax/wp-footnotes/blob/master/CONTRIBUTING.md) before 
