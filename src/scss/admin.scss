@@ -1,0 +1,21 @@
+#wp-footnotes-identifier-options,
+#wp-footnotes-backlink-options {
+	border:none; 
+	line-height:20px; 
+	margin-bottom:9px; 
+	padding:10px; 
+	background:#EAF3FA; 
+	-moz-border-radius:5px; 
+	-webkit-border-radius: 5px; 
+	border-radius: 5px;
+}
+
+.identifier-link label { 
+	display: block;
+	border-bottom: 1px solid #21759B;
+}
+
+.form-table ul.checkboxes {
+	list-style-type: none;
+	margin: 0;
+} 
