@@ -35,7 +35,7 @@ class swas_wp_footnotes {
 	private $current_options;
 	private $default_options;
 	
-	const OPTIONS_VERSION = "4.2.6"; // Incremented when the options array changes.
+	const OPTIONS_VERSION = "4.2.7"; // Incremented when the options array changes.
 	
 	/**
 	 * Constructor.
@@ -77,6 +77,7 @@ class swas_wp_footnotes {
 									  'footnotes_open'=>' ((',
 									  'footnotes_close'=>'))',
 									  'footnotes_shortcode'=>'footnotes',
+									  'pretty_tooltips'=>false,
 									  'version'=>self::OPTIONS_VERSION);
 		
 		// Get the current settings or setup some defaults if needed
@@ -127,6 +128,8 @@ class swas_wp_footnotes {
 			$footnotes_options['footnotes_open'] = $_POST['footnotes_open'];
 			$footnotes_options['footnotes_close'] = $_POST['footnotes_close'];
 			
+			$footnotes_options['pretty_tooltips'] = (array_key_exists('pretty_tooltips', $_POST)) ? true : false;
+			
 			update_option('swas_footnote_options', $footnotes_options);
 		} elseif( !empty($_POST['reset_options']) ) {
 			update_option('swas_footnote_options', '');
@@ -138,6 +141,7 @@ class swas_wp_footnotes {
 		add_action('admin_menu', array($this, 'add_options_page')); 		// Insert the Admin panel.
 		add_action('admin_enqueue_scripts', array($this, 'register_js'));
 		add_action('wp_head', array($this, 'insert_styles'));
+		if ($this->current_options['pretty_tooltips']) add_action('wp_enqueue_scripts', array($this, 'tooltip_scripts'));
 	}
 	
 	/**
@@ -247,9 +251,11 @@ class swas_wp_footnotes {
 				}
 				$footnotes_markup = $footnotes_markup.$value['text'];
 				if (!is_feed()){
+					$footnotes_markup .= '<span class="footnote-back-link-wrapper">';
 					foreach($value['identifiers'] as $identifier){
 						$footnotes_markup = $footnotes_markup.$this->current_options['pre_backlink'].'<a href="'.( ($use_full_link) ? get_permalink($post->ID) : '' ).'#identifier_'.$identifier.'_'.$post->ID.'" class="footnote-link footnote-back-link">'.$this->current_options['backlink'].'</a>'.$this->current_options['post_backlink'];
 					}
+					$footnotes_markup .= '</span>';
 				}
 				$footnotes_markup = $footnotes_markup . '</li>';
 			}
@@ -366,4 +372,17 @@ class swas_wp_footnotes {
 		}
 		
 	}
+
+	/**
+	 * Add scripts and CSS for pretty tooltips.
+	 */
+	function tooltip_scripts() {
+		wp_enqueue_script(
+			'wp-footnotes-tooltips',
+			plugins_url( 'js/tooltips.js' , __FILE__ ),
+			array('jquery', 'jquery-ui-widget', 'jquery-ui-tooltip', 'jquery-ui-core', 'jquery-ui-position')
+		);
+
+		wp_enqueue_style( 'wp-footnotes-tt-style', plugins_url( 'css/tooltips.css' , __FILE__ ), array(), null );
+        }
 }
