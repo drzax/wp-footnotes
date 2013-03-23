@@ -178,7 +178,11 @@ class swas_wp_footnotes {
 		$footnotes = array();
 		
 		// Check if this post is using a different list style to the settings
-		if ( array_key_exists(get_post_meta($post->ID, 'footnote_style', true), $this->styles) ) {
+		
+		if ( 
+			get_post_meta($post->ID, 'footnote_style', true) 
+			&& array_key_exists(get_post_meta($post->ID, 'footnote_style', true), $this->styles) 
+		) {
 			$style = get_post_meta($post->ID, 'footnote_style', true);
 		} else {
 			$style = $this->current_options['list_style_type'];
