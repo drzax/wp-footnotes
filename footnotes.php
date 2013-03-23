@@ -35,7 +35,7 @@ class swas_wp_footnotes {
 	private $current_options;
 	private $default_options;
 	
-	const OPTIONS_VERSION = "4.2.7"; // Incremented when the options array changes.
+	const OPTIONS_VERSION = "5"; // Incremented when the options array changes.
 	
 	/**
 	 * Constructor.
