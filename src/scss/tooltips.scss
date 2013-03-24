@@ -5,6 +5,7 @@
 	position: absolute;
 	z-index: 9999;
 	max-width: 300px;
+	word-wrap: break-word;
 	@include box-shadow(0 0 5px #ddd);
 }
 
