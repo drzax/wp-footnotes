@@ -1,32 +1,42 @@
 ;(function($, undefined){
+	
+	var timeout,
+		timing = 300,
+		$identifiers,
+		selector = 'a.footnote-identifier-link';
+	
 	$(function() {
 		
-		// hack to get tooltip to persist whilst it is hovered over
-		$( "a.footnote-identifier-link" ).bind(
-			"mouseleave", 
-			function( event ) { 
-				event.stopImmediatePropagation(); 
-				var fixed = setTimeout('$("a.footnote-identifier-link").tooltip("close")', 500); 
-				$(".ui-tooltip").hover( 
-					function(){
-						clearTimeout (fixed);
-					}, 
-					function(){
-						$("a.footnote-identifier-link").tooltip("close");
-					}
-				); 
-			}
-		).tooltip();
-
-
-		$( "a.footnote-identifier-link" ).tooltip({
-			items: "a.footnote-identifier-link",
+		$identifiers = $(selector);
+		
+		$identifiers.tooltip({
 			tooltipClass: "footnote footnote-tooltip",
 			content: function() {
 				var element = $( this );
 				var bibentry = element.attr("href");
 				return $(bibentry).html();
 			}
+		}).on('mouseleave focusout', function(event){
+			
+			// Stop jQuery UI tooltips widget getting the signal to close the tooltip.
+			// Note: this is problematic as it may interfere with other JS acting on these events.
+			event.stopImmediatePropagation();
+			timeout = setTimeout(function() {$identifiers.tooltip("close")}, timing); 
+			
+		}).on('mouseover focusin', function(event){
+			clearTimeout(timeout);
 		});
-	}); 
+		
+		// Stop the tooltip from closing while mouse is hovered.
+		$(document).on('mouseover', '.ui-tooltip', function(){
+			clearTimeout(timeout);
+		});
+		
+		// Close the tooltip when mouse leaves tooltip.
+		$(document).on('mouseleave', '.ui-tooltip', function(){
+			clearTimeout(timeout);
+			timeout = setTimeout(function() {$identifiers.tooltip("close")}, timing); 
+		});
+	});
+	
 }(jQuery));
