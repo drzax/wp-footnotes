@@ -304,7 +304,7 @@ class swas_wp_footnotes {
 	 * Register javascript.
 	 */
 	function register_js() {
-		wp_register_script( 'wp-footnotes-admin', plugins_url( 'admin.js', __FILE__ ), array('jquery'));
+		wp_register_script( 'wp-footnotes-admin', plugins_url( 'js/admin.js', __FILE__ ), array('jquery'));
 	}
 	
 	function upgrade_post($data){
