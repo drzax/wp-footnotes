@@ -10,4 +10,8 @@ class FootnotesTest extends WP_UnitTestCase {
 	function testAdminStylesRegistered() {
 		$this->assertTrue( wp_style_is( 'wp-footnotes-admin-styles', 'registered' ) );
 	}
+	
+	function testAdminScriptsRegistered() {
+		$this->assertTrue( wp_script_is( 'wp-footnotes-admin', 'registered' ) );
+	}
 }
