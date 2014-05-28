@@ -14,4 +14,9 @@ class WP_Test_Footnotes extends WP_UnitTestCase {
 		$this->assertEquals( 11, has_filter('the_content', array($swas_wp_footnotes, 'process')) );
 	}
 	
+	function test_admin_menu_added() {
+		global $swas_wp_footnotes;
+		$this->assertEquals( 10, has_action('admin_menu', array($swas_wp_footnotes, 'add_options_page')) );
+	}
+	
 }
